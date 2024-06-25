@@ -1,4 +1,3 @@
-/* eslint default radix */
 export default function iterateThroughObject(reportWithIterator) {
     let output = '';
 
