@@ -14,6 +14,3 @@ export default async function asyncUploadUser() {
   }
   return res;
 }
-
-if (PP) {
-    
