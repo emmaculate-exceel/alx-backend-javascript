@@ -10,7 +10,7 @@ export default async function asyncUploadUser() {
 	console.log(res);
   } catch (err) {
       res = { photo: null, user: null };
-	  console.log(res)
+      console.log(res)
   }
   return res;
 }
