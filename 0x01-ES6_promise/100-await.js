@@ -12,6 +12,5 @@ export default async function asyncUploadUser() {
     res = { photo: null, user: null };
     console.log(res);
   }
-
   return res;
 }
