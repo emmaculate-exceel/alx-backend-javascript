@@ -1,9 +1,20 @@
-export const weakMap = new WeakMap();
+const weakMap = new WeakMap();
 
-// https://stackoverflow.com/questions/29413222/what-are-the-actual-uses-of-es6-weakmap
+export { weakMap };
+
 export function queryAPI(endpoint) {
-  let called = 0;
-  if (weakMap.get(endpoint)) called = weakMap.get(endpoint);
-  weakMap.set(endpoint, called + 1);
-  if (called + 1 >= 5) throw new Error('Endpoint load is high');
+  if (!endpoint || typeof endpoint !== 'object' || !endpoint.protocol || !endpoint.name) {
+    throw new Error('Invalid endpoint configuration');
+  }
+
+  let count = weakMap.get(endpoint) || 0;
+  count++;
+  weakMap.set(endpoint, count);
+
+  if (count >= 5) {
+    throw new Error(`Endpoint load is high: ${endpoint.protocol}/${endpoint.name}`);
+  }
+
+  console.log(`Querying API for endpoint: ${endpoint.protocol}/${endpoint.name}`);
+  return `Response for ${endpoint.protocol}/${endpoint.name}`;
 }
