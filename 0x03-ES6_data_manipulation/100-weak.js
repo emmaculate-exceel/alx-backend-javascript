@@ -7,7 +7,7 @@ export function queryAPI(endpoint) {
     throw new Error('Invalid endpoint configuration');
   }
 
-  const count = weakMap.get(endpoint) || 0;
+  let count = weakMap.get(endpoint) || 0;
   count + 1;
   weakMap.set(endpoint, count);
 
